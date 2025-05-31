@@ -10,15 +10,6 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-// Базовый класс объекта
-class MyObject {
-public:
-    virtual ~MyObject() {}
-    virtual QString getName() const = 0;
-    virtual double getValue() const = 0;
-    virtual void edit() = 0;
-};
-
 
 class MainWindow : public QMainWindow
 {
@@ -27,7 +18,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    static double calaculateAverageValue(const double sum, const unsigned int num);
 private slots:
     void on_addButton_clicked();
     void on_deleteButton_clicked();

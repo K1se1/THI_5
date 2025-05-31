@@ -10,14 +10,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
-
+find_package(Qt6 REQUIRED COMPONENTS Core Test)
 
 add_library(Stone INTERFACE Stone.hpp)
 add_library(GemStone INTERFACE GemStone.hpp)
 add_library(SPStone INTERFACE SemiPreciousStone.hpp)
 add_library(Amethyst INTERFACE Amethyst.hpp)
 add_library(Diamond INTERFACE Diamond.hpp)
-
+add_library(TEST test_main_windows.cpp test_main_windows.h)
+target_link_libraries(TEST PRIVATE Qt6::Core Qt6::Test Qt6::Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -50,7 +51,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(Lab5 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(Lab5 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets TEST)
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.

@@ -104,6 +104,15 @@ void MainWindow::updateObjectsList()
     }
 }
 
+
+
+double MainWindow::calaculateAverageValue(const double sum, const unsigned int num)
+{
+    double average = sum / num;
+    return average;
+}
+
+
 void MainWindow::updateAverageValue()
 {
     if (objects.isEmpty()) {
@@ -116,6 +125,6 @@ void MainWindow::updateAverageValue()
         sum += obj->GetPrice();
     }
 
-    double average = sum / objects.size();
+    double average = calaculateAverageValue(sum, objects.size());
     ui->averageLabel->setText(QString("Средняя цена: %1").arg(average));
 }
