@@ -108,6 +108,10 @@ void MainWindow::updateObjectsList()
 
 double MainWindow::calaculateAverageValue(const double sum, const unsigned int num)
 {
+    if(num == 0)
+    {
+        throw std::logic_error("num == 0");
+    }
     double average = sum / num;
     return average;
 }
